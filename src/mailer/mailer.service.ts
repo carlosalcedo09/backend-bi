@@ -15,7 +15,7 @@ export class MailerService {
       secure: true,
       auth: {
         user: 'ucvasistent@gmail.com',
-        pass: 'ijre ooen uoyl lydm', // Contraseña de aplicación
+        pass: '', // Contraseña de aplicación
       },
     });
 
