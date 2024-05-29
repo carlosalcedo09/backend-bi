@@ -7,7 +7,7 @@ export class EmailController {
 
   @Post('enviarCorreo')
   async enviarCorreo(@Body() body: { email: string }){
-    const verificationCode = this.mailerService.generateVerificationCode(6); // Genera un código de 6 dígitos
+    const verificationCode = this.mailerService.generateVerificationCode(4); // Genera un código de 6 dígitos
     await this.mailerService.sendVerificationEmail(body.email,verificationCode);
     return { message: 'Correo de verificación enviado' };
   }
