@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsuariosModule } from './usuarios/usuarios.module';
-import {TypeOrmModule} from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonalModule } from './personal/personal.module';
 import { GeneroModule } from './genero/genero.module';
 import { DistritoModule } from './distrito/distrito.module';
@@ -16,10 +16,10 @@ import { EmailController } from './mailer/mailer.controller'; // Importa el Emai
   imports: [
             TypeOrmModule.forRoot({
               type:'mssql', 
-              host:'DESKTOP-G8P3KD4',
+              host:'Mel',
               port:1433,
-              username:'Sa',
-              password: '12345678',
+              username:'Mel',
+              password: '713419582003',
               database: 'DB_BI',
               entities: [__dirname+'/**/*.entity{.ts,.js}'],
               synchronize: true,
