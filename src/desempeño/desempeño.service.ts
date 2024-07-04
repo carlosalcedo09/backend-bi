@@ -298,4 +298,29 @@ export class DesempeñoService {
         return results;
     }
 
+    async getEstudiantesPorCursoYSemestre(idCurso: string, semestre: string) {
+        const queryBuilder = this.desempeñoRepository.createQueryBuilder();
+        
+        const results = await queryBuilder
+            .select([
+                'd.codigoE AS codigo',
+                "e.apellidosE + ' ' + e.nombresE AS nombre",
+                'e.dniE AS dni',
+                'e.descripcion AS genero',
+                'e.descripcionD AS distrito',
+                'CASE WHEN MONTH(d.fechaInicio) BETWEEN 1 AND 6 THEN CAST(YEAR(d.fechaInicio) AS VARCHAR) + \'-I\' ELSE CAST(YEAR(d.fechaInicio) AS VARCHAR) + \'-II\' END AS Semestre'
+            ])
+            .from('H_DESEMPEÑO_DEST', 'd')
+            .innerJoin('DIM_ESTUDIANTES_DEST', 'e', 'e.CodigoE = d.codigoE')
+            .innerJoin('DIM_CURSO_DEST', 'c', 'c.idCurso = d.idCurso')
+            .where('c.idCurso = :idCurso', { idCurso })
+            .andWhere("CASE WHEN MONTH(d.fechaInicio) BETWEEN 1 AND 6 THEN CAST(YEAR(d.fechaInicio) AS VARCHAR) + '-I' ELSE CAST(YEAR(d.fechaInicio) AS VARCHAR) + '-II' END = :semestre", { semestre })
+            .groupBy('d.codigoE, e.apellidosE, e.nombresE, e.dniE, e.descripcion, e.descripcionD, d.fechaInicio')
+            .getRawMany();
+    
+        return results;
+    }
+    
+    
+
 }

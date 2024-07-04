@@ -101,4 +101,10 @@ export class DesempeñoController {
     async getResumen(@Query('añoI') añoI: number, @Query('añoF') añoF: number) {
       return this.desempeñoService.getResumen(añoI, añoF);
     }
+
+    @Get('estudiantesCursosSemestre')
+    async datosEstudiante(@Query('idCurso') idCurso: string, @Query('semestre') semestre: string) {
+      return this.desempeñoService.getEstudiantesPorCursoYSemestre(idCurso,semestre);
+    }
+    
 }
