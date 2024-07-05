@@ -304,7 +304,8 @@ export class DesempeñoService {
         const results = await queryBuilder
             .select([
                 'd.codigoE AS codigo',
-                "e.apellidosE + ' ' + e.nombresE AS nombre",
+                'e.apellidosE',
+                'e.nombresE',
                 'e.dniE AS dni',
                 'e.descripcion AS genero',
                 'e.descripcionD AS distrito',
@@ -321,6 +322,16 @@ export class DesempeñoService {
         return results;
     }
     
+    async getDetalleNotaEstudiante(idCurso: string, codigoE: number) {
+        const queryBuilder = this.desempeñoRepository.createQueryBuilder('d');
     
+        const results = await queryBuilder
+            .select(['d.idUnidad', 'd.idTipo', 'd.nota'])
+            .where('d.codigoE = :codigoE', { codigoE })
+            .andWhere('d.idCurso = :idCurso', { idCurso })
+            .getRawMany();
+    
+        return results;
+    }  
 
 }

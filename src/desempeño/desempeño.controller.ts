@@ -106,5 +106,10 @@ export class DesempeñoController {
     async datosEstudiante(@Query('idCurso') idCurso: string, @Query('semestre') semestre: string) {
       return this.desempeñoService.getEstudiantesPorCursoYSemestre(idCurso,semestre);
     }
+
+    @Get('detalleNotaEstudiante')
+    async detalleEstudiante(@Query('idCurso') idCurso: string, @Query('codigoE') codigoE: number){
+        return this.desempeñoService.getDetalleNotaEstudiante(idCurso,codigoE);
+    }
     
 }
