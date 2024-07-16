@@ -25,10 +25,10 @@ import { DesempeñoModule } from './desempeño/desempeño.module';
   imports: [
             TypeOrmModule.forRoot({
               type:'mssql', 
-              host:'DESKTOP-G8P3KD4',
+              host:'LAPTOP-S2348A7G',
               port:1433,
-              username:'Sa',
-              password: '12345678',
+              username:'CAM',
+              password: '14092004',
               database: 'DB_BI',
               entities: [__dirname + '/**/*.entity{.ts,.js}'],
               synchronize: true,
